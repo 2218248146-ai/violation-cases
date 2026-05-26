@@ -1,5 +1,17 @@
 [
   {
+    "id": 1779804508036,
+    "source": "交易",
+    "reason": "低质重复",
+    "am": "陈心怡",
+    "desc": "",
+    "advice": "",
+    "merchants": [],
+    "blackbox": true,
+    "freq": 1,
+    "createdAt": "2026-05-26"
+  },
+  {
     "id": 1,
     "source": "社区",
     "reason": "工业化流水号 — 经营账号相似笔记",
