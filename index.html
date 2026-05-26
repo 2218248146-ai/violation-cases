@@ -557,6 +557,7 @@ function cardHTML(c) {
           ${c.updatedAt ? `<span>✏️ 更新于 ${c.updatedAt}</span>` : ''}
         </div>
         <button class="edit-link" onclick="openEdit(${c.id});event.stopPropagation()">编辑</button>
+        <button class="edit-link" style="color:#f87171" onclick="deleteCase(${c.id});event.stopPropagation()">删除</button>
       </div>
     </div>
   </div>`;
@@ -687,6 +688,29 @@ async function submitCase() {
     showToast('❌ ' + err.message);
   } finally {
     btn.disabled = false; tip.style.display = 'none';
+  }
+}
+
+// ── 删除 ──
+async function deleteCase(id) {
+  const c = cases.find(x => x.id === id);
+  if (!c) return;
+  const pwd = prompt(`删除「${c.reason}」？输入团队密码确认：`);
+  if (!pwd) return;
+  const encoder = new TextEncoder();
+  const hashBuf = await crypto.subtle.digest('SHA-256', encoder.encode(pwd));
+  const hashHex = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  if (hashHex !== PWD_HASH) { showToast('❌ 密码错误'); return; }
+  currentPwd = pwd;
+  showToast('删除中…');
+  try {
+    const updated = cases.filter(x => x.id !== id);
+    await pushToGithub(updated, `delete: ${c.reason}`);
+    cases = updated;
+    renderCards();
+    showToast('✅ 已删除');
+  } catch(err) {
+    showToast('❌ ' + err.message);
   }
 }
 
