@@ -694,20 +694,24 @@ async function submitCase() {
 
 // ── GitHub 写入 ──
 async function pushToGithub(data, msg) {
-  const metaRes = await fetch(API_URL, {
-    headers: { Authorization: 'token ' + GH_TOKEN, 'User-Agent': 'violation-cases-app' }
-  });
-  if (!metaRes.ok) throw new Error('获取文件信息失败');
+  // Basic Auth 方式：username + token，不触发 CORS preflight
+  const authStr = '2218248146-ai:' + GH_TOKEN;
+  const authB64 = btoa(authStr);
+  const headers = {
+    Authorization: 'Basic ' + authB64,
+    'Content-Type': 'application/json'
+  };
+
+  // 获取当前文件 SHA
+  const metaRes = await fetch(API_URL, { headers });
+  if (!metaRes.ok) throw new Error('获取文件信息失败 (' + metaRes.status + ')');
   const meta = await metaRes.json();
 
+  // 写入新内容
   const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
   const pushRes = await fetch(API_URL, {
     method: 'PUT',
-    headers: {
-      Authorization: 'token ' + GH_TOKEN,
-      'Content-Type': 'application/json',
-      'User-Agent': 'violation-cases-app'
-    },
+    headers,
     body: JSON.stringify({ message: msg, content: newContent, sha: meta.sha })
   });
   if (!pushRes.ok) {
