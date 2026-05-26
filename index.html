@@ -8,24 +8,15 @@
     :root {
       --red: #ff2442;
       --red-light: #fff0f2;
-      --red-mid: #ffd6db;
       --gray-1: #f7f8fa;
       --gray-2: #ebebeb;
       --gray-3: #999;
       --gray-4: #555;
       --gray-5: #222;
-      --trade: #ff6b35;
-      --trade-light: #fff4f0;
-      --community: #ff2442;
-      --community-light: #fff0f2;
-      --black-box: #6b6b6b;
-      --black-box-light: #f4f4f4;
       --radius: 12px;
       --shadow: 0 2px 12px rgba(0,0,0,0.07);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
       background: var(--gray-1);
@@ -38,413 +29,185 @@
       background: #fff;
       border-bottom: 1px solid var(--gray-2);
       padding: 20px 24px 16px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
     }
     .header-top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
     }
     .logo {
-      width: 32px; height: 32px;
-      background: var(--red);
-      border-radius: 8px;
+      width: 32px; height: 32px; background: var(--red); border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      color: #fff;
-      font-size: 16px; font-weight: 700;
+      color: #fff; font-size: 16px; font-weight: 700; flex-shrink: 0;
     }
-    h1 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--gray-5);
+    h1 { font-size: 18px; font-weight: 700; }
+    .subtitle { font-size: 12px; color: var(--gray-3); margin-left: auto; white-space: nowrap; }
+    .add-btn {
+      display: flex; align-items: center; gap: 5px;
+      padding: 9px 16px; background: var(--red); color: #fff;
+      border: none; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; white-space: nowrap; transition: opacity .15s; flex-shrink: 0;
     }
-    .subtitle {
-      font-size: 12px;
-      color: var(--gray-3);
-      margin-left: auto;
-    }
-
-    .controls {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .search-wrap {
-      flex: 1;
-      min-width: 200px;
-      position: relative;
-    }
+    .add-btn:hover { opacity: .88; }
+    .controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .search-wrap { flex: 1; min-width: 180px; position: relative; }
     .search-wrap input {
-      width: 100%;
-      padding: 9px 14px 9px 36px;
-      border: 1px solid var(--gray-2);
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-      background: var(--gray-1);
-      color: var(--gray-5);
-      transition: border-color 0.2s;
+      width: 100%; padding: 9px 14px 9px 34px;
+      border: 1px solid var(--gray-2); border-radius: 8px; font-size: 14px;
+      outline: none; background: var(--gray-1); color: var(--gray-5); transition: border-color .2s;
     }
     .search-wrap input:focus { border-color: var(--red); background: #fff; }
-    .search-wrap .icon {
-      position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
-      color: var(--gray-3); font-size: 15px;
-    }
-
-    .filter-group {
-      display: flex; gap: 6px; flex-wrap: wrap;
-    }
+    .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--gray-3); font-size: 14px; }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; }
     .filter-btn {
-      padding: 7px 14px;
-      border-radius: 20px;
-      border: 1px solid var(--gray-2);
-      background: #fff;
-      font-size: 13px;
-      color: var(--gray-4);
-      cursor: pointer;
-      transition: all 0.15s;
-      white-space: nowrap;
+      padding: 7px 13px; border-radius: 20px; border: 1px solid var(--gray-2);
+      background: #fff; font-size: 13px; color: var(--gray-4); cursor: pointer; transition: all .15s; white-space: nowrap;
     }
     .filter-btn:hover { border-color: var(--red); color: var(--red); }
-    .filter-btn.active {
-      background: var(--red);
-      border-color: var(--red);
-      color: #fff;
-    }
+    .filter-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
 
-    /* ── Stats bar ── */
+    /* ── Stats ── */
     .stats-bar {
-      padding: 12px 24px;
-      font-size: 13px;
-      color: var(--gray-3);
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      padding: 10px 24px; font-size: 13px; color: var(--gray-3);
+      display: flex; align-items: center; gap: 12px;
     }
     .stats-bar strong { color: var(--gray-5); }
+    .loading-tip { color: var(--gray-3); font-size: 13px; }
 
-    /* ── Main layout ── */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 16px 40px;
-    }
+    /* ── Main ── */
+    main { max-width: 900px; margin: 0 auto; padding: 0 16px 60px; }
 
     /* ── Card ── */
     .card {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 14px;
-      overflow: hidden;
-      border: 1px solid var(--gray-2);
-      transition: box-shadow 0.2s;
+      background: #fff; border-radius: var(--radius); box-shadow: var(--shadow);
+      margin-bottom: 12px; border: 1px solid var(--gray-2); overflow: hidden; transition: box-shadow .2s;
     }
-    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); }
     .card-header {
-      padding: 16px 20px 12px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      cursor: pointer;
-      user-select: none;
+      padding: 15px 18px 13px; display: flex; align-items: flex-start;
+      gap: 10px; cursor: pointer; user-select: none;
     }
-
     .source-badge {
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-      white-space: nowrap;
-      flex-shrink: 0;
+      padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600;
+      white-space: nowrap; flex-shrink: 0; margin-top: 2px;
     }
-    .source-community {
-      background: var(--community-light);
-      color: var(--community);
-    }
-    .source-trade {
-      background: var(--trade-light);
-      color: var(--trade);
-    }
-    .source-blackbox {
-      background: var(--black-box-light);
-      color: var(--black-box);
-    }
-
-    .card-title-group { flex: 1; }
-    .violation-reason {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--gray-5);
-      margin-bottom: 4px;
-      line-height: 1.4;
-    }
+    .s-community { background: #fff0f2; color: #ff2442; }
+    .s-trade     { background: #fff4f0; color: #ff6b35; }
+    .s-blackbox  { background: #f4f4f4; color: #6b6b6b; }
+    .card-title-group { flex: 1; min-width: 0; }
+    .violation-reason { font-size: 15px; font-weight: 700; margin-bottom: 3px; line-height: 1.4; }
     .violation-summary {
-      font-size: 13px;
-      color: var(--gray-3);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 500px;
+      font-size: 12px; color: var(--gray-3);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
+    .card-meta { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+    .merchant-badge {
+      font-size: 11px; color: var(--gray-3); background: var(--gray-1);
+      padding: 2px 8px; border-radius: 10px; white-space: nowrap;
     }
-    .merchant-count {
-      font-size: 12px;
-      color: var(--gray-3);
-      background: var(--gray-1);
-      padding: 3px 8px;
-      border-radius: 12px;
-    }
-    .merchant-count.has-cases {
-      background: #fff3e0;
-      color: #e65100;
-    }
-    .blackbox-tag {
-      font-size: 11px;
-      color: var(--black-box);
-      background: var(--black-box-light);
-      padding: 3px 8px;
-      border-radius: 12px;
-    }
-    .toggle-icon {
-      color: var(--gray-3);
-      font-size: 14px;
-      transition: transform 0.2s;
-    }
+    .merchant-badge.has { background: #fff3e0; color: #e65100; }
+    .bb-tag { font-size: 11px; color: #6b6b6b; background: #f4f4f4; padding: 2px 8px; border-radius: 10px; }
+    .toggle-icon { color: var(--gray-3); font-size: 13px; transition: transform .2s; }
     .card.open .toggle-icon { transform: rotate(180deg); }
-
-    /* ── Card body ── */
     .card-body {
-      display: none;
-      padding: 0 20px 18px;
+      display: none; padding: 0 18px 18px;
       border-top: 1px solid var(--gray-2);
-      margin-top: 0;
     }
     .card.open .card-body { display: block; }
-
-    .section {
-      margin-top: 14px;
-    }
+    .section { margin-top: 14px; }
     .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gray-3);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 7px;
+      font-size: 11px; font-weight: 600; color: var(--gray-3);
+      letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px;
     }
-    .section-content {
-      font-size: 14px;
-      color: var(--gray-4);
-      line-height: 1.7;
-      white-space: pre-wrap;
-    }
-    .section-content a {
-      color: var(--red);
-      text-decoration: none;
-      word-break: break-all;
-    }
+    .section-content { font-size: 13.5px; color: var(--gray-4); line-height: 1.75; white-space: pre-wrap; }
+    .section-content a { color: var(--red); text-decoration: none; word-break: break-all; }
     .section-content a:hover { text-decoration: underline; }
-
-    /* 规避建议高亮 */
     .advice-box {
-      background: #fff8f8;
-      border-left: 3px solid var(--red);
-      border-radius: 0 8px 8px 0;
-      padding: 12px 14px;
-      font-size: 13.5px;
-      color: var(--gray-4);
-      line-height: 1.75;
-      white-space: pre-wrap;
+      background: #fff8f8; border-left: 3px solid var(--red);
+      border-radius: 0 8px 8px 0; padding: 11px 14px;
+      font-size: 13.5px; color: var(--gray-4); line-height: 1.75; white-space: pre-wrap;
     }
-
-    /* 黑盒频次 */
-    .blackbox-section {
-      background: var(--black-box-light);
-      border-radius: 8px;
-      padding: 12px 14px;
-    }
-    .freq-display {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--black-box);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .freq-label { font-size: 12px; color: var(--gray-3); }
-
-    /* 关联商家 */
-    .merchant-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .blackbox-box { background: #f4f4f4; border-radius: 8px; padding: 12px 14px; }
+    .freq-num { font-size: 30px; font-weight: 800; color: #6b6b6b; line-height: 1; }
+    .freq-label { font-size: 12px; color: var(--gray-3); margin-top: 3px; }
+    .merchant-list { display: flex; flex-wrap: wrap; gap: 6px; }
     .merchant-chip {
-      background: #fff3e0;
-      color: #bf360c;
-      border-radius: 6px;
-      padding: 4px 10px;
-      font-size: 12px;
-      font-weight: 500;
+      background: #fff3e0; color: #bf360c;
+      border-radius: 6px; padding: 3px 9px; font-size: 12px; font-weight: 500;
     }
-    .no-merchant {
-      font-size: 13px;
-      color: var(--gray-3);
-      font-style: italic;
+    .no-data { font-size: 13px; color: var(--gray-3); font-style: italic; }
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--gray-2);
     }
+    .card-date { font-size: 11px; color: var(--gray-3); }
+    .edit-btn {
+      font-size: 12px; color: var(--gray-3); background: none; border: none;
+      cursor: pointer; padding: 4px 8px; border-radius: 6px;
+    }
+    .edit-btn:hover { background: var(--gray-1); color: var(--gray-5); }
 
-    /* ── Add button ── */
-    .add-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 18px;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.15s;
-      white-space: nowrap;
-    }
-    .add-btn:hover { opacity: 0.88; }
+    /* ── Empty / Error ── */
+    .center-msg { text-align: center; padding: 60px 20px; color: var(--gray-3); }
+    .center-msg .icon { font-size: 36px; margin-bottom: 10px; }
+    .center-msg p { font-size: 14px; }
 
     /* ── Modal ── */
-    .modal-overlay {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    .overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.45); z-index: 200;
+      align-items: center; justify-content: center; padding: 16px;
     }
-    .modal-overlay.open { display: flex; }
+    .overlay.open { display: flex; }
     .modal {
-      background: #fff;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 28px;
+      background: #fff; border-radius: 16px; width: 100%;
+      max-width: 580px; max-height: 92vh; overflow-y: auto; padding: 26px;
     }
-    .modal h2 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: var(--gray-5);
+    .modal-title {
+      font-size: 17px; font-weight: 700; margin-bottom: 20px; color: var(--gray-5);
     }
-    .form-row {
-      margin-bottom: 16px;
-    }
-    .form-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gray-4);
-      margin-bottom: 6px;
-      display: block;
-    }
-    .form-label .required { color: var(--red); margin-left: 2px; }
+    .form-row { margin-bottom: 15px; }
+    .form-label { font-size: 13px; font-weight: 600; color: var(--gray-4); margin-bottom: 6px; display: block; }
+    .form-label .req { color: var(--red); }
     .form-input, .form-select, .form-textarea {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid var(--gray-2);
-      border-radius: 8px;
-      font-size: 14px;
-      color: var(--gray-5);
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.2s;
-      background: #fff;
+      width: 100%; padding: 9px 12px;
+      border: 1px solid var(--gray-2); border-radius: 8px;
+      font-size: 14px; color: var(--gray-5); font-family: inherit;
+      outline: none; transition: border-color .2s; background: #fff;
     }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: var(--red);
-    }
-    .form-textarea { min-height: 100px; resize: vertical; }
-
-    .blackbox-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: var(--gray-4);
-      cursor: pointer;
-      user-select: none;
-    }
-    .blackbox-toggle input { cursor: pointer; }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      margin-top: 24px;
-    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--red); }
+    .form-textarea { min-height: 90px; resize: vertical; }
+    .bb-toggle { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--gray-4); cursor: pointer; }
+    .bb-toggle input { cursor: pointer; accent-color: var(--red); }
+    .token-hint { font-size: 12px; color: var(--gray-3); margin-top: 5px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 22px; }
     .btn-cancel {
-      padding: 10px 20px;
-      border: 1px solid var(--gray-2);
-      background: #fff;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      color: var(--gray-4);
+      padding: 9px 18px; border: 1px solid var(--gray-2); background: #fff;
+      border-radius: 8px; font-size: 14px; cursor: pointer; color: var(--gray-4);
     }
     .btn-submit {
-      padding: 10px 24px;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
+      padding: 9px 22px; background: var(--red); color: #fff;
+      border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: opacity .15s;
     }
-    .btn-submit:hover { opacity: 0.88; }
-
-    /* ── Empty state ── */
-    .empty {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--gray-3);
-    }
-    .empty-icon { font-size: 40px; margin-bottom: 12px; }
-    .empty p { font-size: 15px; }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-submit:not(:disabled):hover { opacity: .88; }
+    .submitting-tip { font-size: 13px; color: var(--gray-3); align-self: center; }
 
     /* ── Toast ── */
     .toast {
-      position: fixed;
-      bottom: 30px; left: 50%; transform: translateX(-50%);
-      background: #222;
-      color: #fff;
-      padding: 11px 22px;
-      border-radius: 30px;
-      font-size: 14px;
-      z-index: 300;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      background: #222; color: #fff; padding: 10px 22px;
+      border-radius: 30px; font-size: 14px; z-index: 300;
+      opacity: 0; transition: opacity .3s; pointer-events: none; white-space: nowrap;
     }
     .toast.show { opacity: 1; }
 
     @media (max-width: 600px) {
-      header { padding: 14px 14px 12px; }
-      main { padding: 0 10px 40px; }
+      header { padding: 14px 12px 12px; }
+      main { padding: 0 10px 60px; }
       .violation-summary { display: none; }
-      .modal { padding: 20px; }
+      .subtitle { display: none; }
+      .modal { padding: 18px; }
     }
   </style>
 </head>
@@ -459,80 +222,83 @@
   </div>
   <div class="controls">
     <div class="search-wrap">
-      <span class="icon">🔍</span>
+      <span class="search-icon">🔍</span>
       <input type="text" id="searchInput" placeholder="搜索违规原因、描述、建议…" oninput="renderCards()" />
     </div>
     <div class="filter-group">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">全部</button>
-      <button class="filter-btn" data-filter="社区" onclick="setFilter('社区', this)">社区</button>
-      <button class="filter-btn" data-filter="交易" onclick="setFilter('交易', this)">交易</button>
-      <button class="filter-btn" data-filter="blackbox" onclick="setFilter('blackbox', this)">黑盒违规</button>
+      <button class="filter-btn active" onclick="setFilter('all',this)">全部</button>
+      <button class="filter-btn" onclick="setFilter('社区',this)">社区</button>
+      <button class="filter-btn" onclick="setFilter('交易',this)">交易</button>
+      <button class="filter-btn" onclick="setFilter('blackbox',this)">🔒 黑盒</button>
     </div>
   </div>
 </header>
 
 <div class="stats-bar">
-  <span>共 <strong id="totalCount">0</strong> 条案例</span>
+  <span>共 <strong id="totalCount">—</strong> 条</span>
   <span>|</span>
-  <span>当前显示 <strong id="showCount">0</strong> 条</span>
+  <span>显示 <strong id="showCount">—</strong> 条</span>
+  <span id="loadingTip" class="loading-tip">加载中…</span>
 </div>
 
 <main>
   <div id="cardList"></div>
-  <div id="emptyState" class="empty" style="display:none">
-    <div class="empty-icon">🔍</div>
-    <p>没有找到匹配的案例</p>
+  <div id="emptyState" class="center-msg" style="display:none">
+    <div class="icon">🔍</div><p>没有找到匹配的案例</p>
+  </div>
+  <div id="errorState" class="center-msg" style="display:none">
+    <div class="icon">⚠️</div><p id="errorMsg">加载失败，请刷新重试</p>
   </div>
 </main>
 
-<!-- 新增案例 Modal -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+<!-- 新增/编辑 Modal -->
+<div class="overlay" id="overlay" onclick="bgClose(event)">
   <div class="modal">
-    <h2>新增违规案例</h2>
+    <div class="modal-title" id="modalTitle">新增违规案例</div>
 
     <div class="form-row">
-      <label class="form-label">处置来源 <span class="required">*</span></label>
+      <label class="form-label">处置来源 <span class="req">*</span></label>
       <select class="form-select" id="f_source">
         <option value="社区">社区</option>
         <option value="交易">交易</option>
       </select>
     </div>
-
     <div class="form-row">
-      <label class="form-label">违规原因 <span class="required">*</span></label>
+      <label class="form-label">违规原因 <span class="req">*</span></label>
       <input class="form-input" id="f_reason" type="text" placeholder="例：封标跟风、工业化流水号…" />
     </div>
-
     <div class="form-row">
       <label class="form-label">违规描述</label>
       <textarea class="form-textarea" id="f_desc" placeholder="违规的具体表现和判定标准…"></textarea>
     </div>
-
     <div class="form-row">
       <label class="form-label">规避建议</label>
       <textarea class="form-textarea" id="f_advice" placeholder="如何整改和规避此类违规…"></textarea>
     </div>
-
     <div class="form-row">
       <label class="form-label">关联商家</label>
       <input class="form-input" id="f_merchants" type="text" placeholder="商家名称，多个用逗号分隔" />
     </div>
-
     <div class="form-row">
-      <label class="blackbox-toggle">
-        <input type="checkbox" id="f_blackbox" onchange="toggleBlackbox()" />
-        这是黑盒违规（审核不说明原因，以频次记录为主）
+      <label class="bb-toggle">
+        <input type="checkbox" id="f_blackbox" onchange="toggleBB()" />
+        🔒 黑盒违规（审核未说明原因，记录频次）
       </label>
     </div>
-
     <div class="form-row" id="f_freq_row" style="display:none">
       <label class="form-label">出现频次</label>
-      <input class="form-input" id="f_freq" type="number" min="1" value="1" placeholder="出现次数" />
+      <input class="form-input" id="f_freq" type="number" min="1" value="1" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">共享密钥 <span class="req">*</span></label>
+      <input class="form-input" id="f_token" type="password" placeholder="请输入团队共享密钥" />
+      <div class="token-hint">密钥用于写入 GitHub，组内共享同一个</div>
     </div>
 
     <div class="modal-actions">
+      <span class="submitting-tip" id="submitTip" style="display:none">提交中…</span>
       <button class="btn-cancel" onclick="closeModal()">取消</button>
-      <button class="btn-submit" onclick="submitCase()">保存案例</button>
+      <button class="btn-submit" id="submitBtn" onclick="submitCase()">保存案例</button>
     </div>
   </div>
 </div>
@@ -540,60 +306,39 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ─────────────────────────────────────────
-// 数据
-// ─────────────────────────────────────────
-const STORAGE_KEY = 'violation_cases_v1';
+const OWNER = '2218248146-ai';
+const REPO  = 'violation-cases';
+const FILE  = 'cases.json';
+const RAW_URL = `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/${FILE}`;
+const API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
 
-const DEFAULT_CASES = [
-  {
-    id: 1,
-    source: '社区',
-    reason: '工业化流水号 — 经营账号相似笔记',
-    desc: '违规依据：【电商内容生态画风：低质重复无效问题实施细则】\nhttps://school.xiaohongshu.com/rule/detail/106/10132?jumpFrom=ark\n\n平台判定：子账号与主账号发布近似内容，或同一商品在同一账号反复发布，即使更换了标题、封面、BGM，也属于高度相似内容。',
-    advice: '‼️ 不要把近似内容，同时在子账号和主账号发布！\n‼️ 不要同场景、同一商品，在一个账号反复发布！\n‼️ 只改标题、封面、BGM，也是高度相似内容！\n\n✅ 整改建议：隐藏或删除违规笔记，重新创作差异化内容后再发布。',
-    merchants: [],
-    blackbox: false,
-    freq: null
-  },
-  {
-    id: 2,
-    source: '社区',
-    reason: '封标跟风',
-    desc: '常见触发词：救命、🆘、thx、感谢……\n\n如果标题有明显的套路化痕迹，或为了点击量夸大、歪曲内容真实属性（如明明是广告却伪装成"避雷贴"），就很容易被判定为"标题跟风"违规。\n\n主要属于违规中的"夸大其词"或"故弄玄虚"：博主为了博眼球、骗流量，刻意使用夸张、诱导性或"标题党"式句式，导致内容与事实不符或价值观导向不良。',
-    advice: '🔥 如何修改标题以恢复合规？\n\n1、去套路化：把"避雷"、"救命"这类词换成更平实的描述。\n   例：把"避雷这家店！"改成"实测XX店，聊聊我的真实感受"\n\n2、聚焦真实体验：多用"我发现"、"我的经验"、"我尝试了"开头，强调个人主观分享，而非普适结论。\n\n3、精准描述价值：标题准确概括正文内容。与其说"太好用了"，不如说"对油皮很友好"或"通勤路上听很合适"。\n\n4、避免绝对化承诺：\n   "绝对有效" → "亲测有效"\n   "全网最低" → "这个价格我觉得很值"\n\n‼️ 整改建议：\n1）建议直接删除该笔记（或隐藏）\n2）根据建议重新修改后发布\n忌在同一篇笔记上反复修改，以免触发二次审核。',
-    merchants: [],
-    blackbox: false,
-    freq: null
-  }
-];
-
-function loadCases() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch(e) {}
-  return JSON.parse(JSON.stringify(DEFAULT_CASES));
-}
-
-function saveCases(cases) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cases));
-}
-
-let cases = loadCases();
+let cases = [];
 let currentFilter = 'all';
+let editingId = null;
+let fileSha = null; // GitHub 文件 SHA，更新时需要
 
-// ─────────────────────────────────────────
-// 渲染
-// ─────────────────────────────────────────
+// ── 加载数据 ──
+async function loadCases() {
+  try {
+    const res = await fetch(RAW_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    cases = await res.json();
+    document.getElementById('loadingTip').style.display = 'none';
+    renderCards();
+  } catch(e) {
+    document.getElementById('loadingTip').style.display = 'none';
+    document.getElementById('errorState').style.display = '';
+    document.getElementById('errorMsg').textContent = '数据加载失败：' + e.message;
+  }
+}
+
+// ── 渲染 ──
 function getFiltered() {
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   return cases.filter(c => {
-    // filter
     if (currentFilter === 'blackbox' && !c.blackbox) return false;
     if (currentFilter === '社区' && c.source !== '社区') return false;
     if (currentFilter === '交易' && c.source !== '交易') return false;
-    // search
     if (!q) return true;
     return [c.reason, c.desc, c.advice, (c.merchants||[]).join(' ')]
       .join(' ').toLowerCase().includes(q);
@@ -602,168 +347,207 @@ function getFiltered() {
 
 function renderCards() {
   const filtered = getFiltered();
-  const list = document.getElementById('cardList');
-  const empty = document.getElementById('emptyState');
-
   document.getElementById('totalCount').textContent = cases.length;
   document.getElementById('showCount').textContent = filtered.length;
-
-  if (filtered.length === 0) {
-    list.innerHTML = '';
-    empty.style.display = '';
-    return;
+  const list = document.getElementById('cardList');
+  const empty = document.getElementById('emptyState');
+  if (filtered.length === 0 && cases.length > 0) {
+    list.innerHTML = ''; empty.style.display = ''; return;
   }
   empty.style.display = 'none';
-
   list.innerHTML = filtered.map(c => cardHTML(c)).join('');
 }
 
 function cardHTML(c) {
-  const sourceCls = c.blackbox ? 'source-blackbox' :
-    c.source === '社区' ? 'source-community' : 'source-trade';
-  const sourceLabel = c.blackbox ? '黑盒' : c.source;
-
-  const merchantCount = (c.merchants || []).length;
-  const merchantBadge = merchantCount > 0
-    ? `<span class="merchant-count has-cases">${merchantCount} 个商家</span>`
-    : `<span class="merchant-count">暂无关联商家</span>`;
-
-  const blackboxTag = c.blackbox
-    ? `<span class="blackbox-tag">📦 黑盒·记频次</span>` : '';
-
-  // 摘要（取desc前30字）
-  const summary = (c.desc || '').replace(/\n/g,' ').slice(0, 40) + (c.desc && c.desc.length > 40 ? '…' : '');
-
+  const srcCls = c.blackbox ? 's-blackbox' : c.source === '社区' ? 's-community' : 's-trade';
+  const srcLabel = c.blackbox ? '黑盒' : c.source;
+  const mc = (c.merchants||[]).length;
+  const summary = (c.desc||'').replace(/\n/g,' ').slice(0,45) + ((c.desc||'').length>45?'…':'');
   return `<div class="card" id="card-${c.id}">
     <div class="card-header" onclick="toggleCard(${c.id})">
-      <span class="source-badge ${sourceCls}">${sourceLabel}</span>
+      <span class="source-badge ${srcCls}">${srcLabel}</span>
       <div class="card-title-group">
         <div class="violation-reason">${esc(c.reason)}</div>
         ${summary ? `<div class="violation-summary">${esc(summary)}</div>` : ''}
       </div>
       <div class="card-meta">
-        ${merchantBadge}
-        ${blackboxTag}
+        <span class="merchant-badge ${mc?'has':''}">${mc ? mc+'个商家' : '暂无商家'}</span>
+        ${c.blackbox ? '<span class="bb-tag">🔒 记频次</span>' : ''}
         <span class="toggle-icon">▾</span>
       </div>
     </div>
     <div class="card-body">
-      ${c.blackbox ? `
-        <div class="section">
-          <div class="section-label">黑盒频次记录</div>
-          <div class="blackbox-section">
-            <div class="freq-display">${c.freq || 1}</div>
-            <div class="freq-label">次（审核未说明原因，持续跟进）</div>
-          </div>
-        </div>` : ''}
-      ${c.desc ? `
-        <div class="section">
-          <div class="section-label">违规描述</div>
-          <div class="section-content">${linkify(esc(c.desc))}</div>
-        </div>` : ''}
-      ${c.advice ? `
-        <div class="section">
-          <div class="section-label">规避建议</div>
-          <div class="advice-box">${esc(c.advice)}</div>
-        </div>` : ''}
-      <div class="section">
-        <div class="section-label">关联商家</div>
-        ${merchantCount > 0
-          ? `<div class="merchant-list">${(c.merchants||[]).map(m => `<span class="merchant-chip">${esc(m)}</span>`).join('')}</div>`
-          : `<span class="no-merchant">暂无记录</span>`}
+      ${c.blackbox ? `<div class="section"><div class="section-label">黑盒频次</div>
+        <div class="blackbox-box"><div class="freq-num">${c.freq||1}</div>
+        <div class="freq-label">次 · 审核未说明原因，持续跟进</div></div></div>` : ''}
+      ${c.desc ? `<div class="section"><div class="section-label">违规描述</div>
+        <div class="section-content">${linkify(esc(c.desc))}</div></div>` : ''}
+      ${c.advice ? `<div class="section"><div class="section-label">规避建议</div>
+        <div class="advice-box">${esc(c.advice)}</div></div>` : ''}
+      <div class="section"><div class="section-label">关联商家</div>
+        ${mc > 0
+          ? `<div class="merchant-list">${(c.merchants||[]).map(m=>`<span class="merchant-chip">${esc(m)}</span>`).join('')}</div>`
+          : '<span class="no-data">暂无记录</span>'}</div>
+      <div class="card-footer">
+        <span class="card-date">${c.createdAt || ''}</span>
+        <button class="edit-btn" onclick="openEdit(${c.id});event.stopPropagation()">✏️ 编辑</button>
       </div>
     </div>
   </div>`;
 }
 
 function toggleCard(id) {
-  const el = document.getElementById('card-' + id);
+  const el = document.getElementById('card-'+id);
   if (el) el.classList.toggle('open');
 }
-
 function setFilter(val, btn) {
   currentFilter = val;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderCards();
 }
 
-// ─────────────────────────────────────────
-// Modal
-// ─────────────────────────────────────────
+// ── Modal ──
 function openModal() {
-  document.getElementById('modalOverlay').classList.add('open');
-  document.getElementById('f_reason').focus();
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  // reset
-  ['f_reason','f_desc','f_advice','f_merchants'].forEach(id => document.getElementById(id).value = '');
+  editingId = null;
+  document.getElementById('modalTitle').textContent = '新增违规案例';
+  ['f_reason','f_desc','f_advice','f_merchants','f_token'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('f_source').value = '社区';
   document.getElementById('f_blackbox').checked = false;
   document.getElementById('f_freq').value = 1;
   document.getElementById('f_freq_row').style.display = 'none';
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('f_reason').focus();
+}
+function openEdit(id) {
+  const c = cases.find(x=>x.id===id); if(!c) return;
+  editingId = id;
+  document.getElementById('modalTitle').textContent = '编辑案例';
+  document.getElementById('f_source').value = c.source;
+  document.getElementById('f_reason').value = c.reason;
+  document.getElementById('f_desc').value = c.desc||'';
+  document.getElementById('f_advice').value = c.advice||'';
+  document.getElementById('f_merchants').value = (c.merchants||[]).join('，');
+  document.getElementById('f_blackbox').checked = !!c.blackbox;
+  document.getElementById('f_freq').value = c.freq||1;
+  document.getElementById('f_freq_row').style.display = c.blackbox ? '' : 'none';
+  document.getElementById('f_token').value = '';
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+}
+function bgClose(e) { if(e.target===document.getElementById('overlay')) closeModal(); }
+function toggleBB() {
+  document.getElementById('f_freq_row').style.display =
+    document.getElementById('f_blackbox').checked ? '' : 'none';
 }
 
-function closeModalOnBg(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
-function toggleBlackbox() {
-  const checked = document.getElementById('f_blackbox').checked;
-  document.getElementById('f_freq_row').style.display = checked ? '' : 'none';
-}
-
-function submitCase() {
+// ── 提交（写入 GitHub）──
+async function submitCase() {
   const reason = document.getElementById('f_reason').value.trim();
+  const token  = document.getElementById('f_token').value.trim();
   if (!reason) { showToast('请填写违规原因'); return; }
+  if (!token)  { showToast('请输入共享密钥'); return; }
 
-  const merchantsRaw = document.getElementById('f_merchants').value.trim();
-  const merchants = merchantsRaw ? merchantsRaw.split(/[,，]+/).map(s => s.trim()).filter(Boolean) : [];
+  const btn = document.getElementById('submitBtn');
+  const tip = document.getElementById('submitTip');
+  btn.disabled = true; tip.style.display = '';
 
-  const newCase = {
-    id: Date.now(),
-    source: document.getElementById('f_source').value,
-    reason,
-    desc: document.getElementById('f_desc').value.trim(),
-    advice: document.getElementById('f_advice').value.trim(),
-    merchants,
-    blackbox: document.getElementById('f_blackbox').checked,
-    freq: document.getElementById('f_blackbox').checked
-      ? parseInt(document.getElementById('f_freq').value) || 1
-      : null
-  };
+  try {
+    // 1. 拉取当前文件 SHA
+    const metaRes = await fetch(API_URL, {
+      headers: { Authorization: 'token ' + token, 'User-Agent': 'violation-cases-app' }
+    });
+    if (!metaRes.ok) {
+      const err = await metaRes.json();
+      throw new Error(err.message || 'Token 无效或无权限');
+    }
+    const meta = await metaRes.json();
+    fileSha = meta.sha;
+    let currentData = JSON.parse(atob(meta.content.replace(/\n/g,'')));
 
-  cases.unshift(newCase);
-  saveCases(cases);
-  closeModal();
-  renderCards();
-  showToast('✅ 案例已保存');
+    const merchants = document.getElementById('f_merchants').value.trim();
+    const isBlackbox = document.getElementById('f_blackbox').checked;
+
+    if (editingId) {
+      // 编辑
+      const idx = currentData.findIndex(x=>x.id===editingId);
+      if (idx !== -1) {
+        currentData[idx] = {
+          ...currentData[idx],
+          source: document.getElementById('f_source').value,
+          reason,
+          desc: document.getElementById('f_desc').value.trim(),
+          advice: document.getElementById('f_advice').value.trim(),
+          merchants: merchants ? merchants.split(/[,，]+/).map(s=>s.trim()).filter(Boolean) : [],
+          blackbox: isBlackbox,
+          freq: isBlackbox ? (parseInt(document.getElementById('f_freq').value)||1) : null,
+          updatedAt: new Date().toISOString().slice(0,10)
+        };
+      }
+    } else {
+      // 新增
+      const newCase = {
+        id: Date.now(),
+        source: document.getElementById('f_source').value,
+        reason,
+        desc: document.getElementById('f_desc').value.trim(),
+        advice: document.getElementById('f_advice').value.trim(),
+        merchants: merchants ? merchants.split(/[,，]+/).map(s=>s.trim()).filter(Boolean) : [],
+        blackbox: isBlackbox,
+        freq: isBlackbox ? (parseInt(document.getElementById('f_freq').value)||1) : null,
+        createdAt: new Date().toISOString().slice(0,10)
+      };
+      currentData.unshift(newCase);
+    }
+
+    // 2. 推送更新
+    const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2))));
+    const pushRes = await fetch(API_URL, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'token ' + token,
+        'Content-Type': 'application/json',
+        'User-Agent': 'violation-cases-app'
+      },
+      body: JSON.stringify({
+        message: editingId ? `update: 编辑案例 ${reason}` : `add: 新增案例 ${reason}`,
+        content: newContent,
+        sha: fileSha
+      })
+    });
+    if (!pushRes.ok) {
+      const err = await pushRes.json();
+      throw new Error(err.message || '推送失败');
+    }
+
+    cases = currentData;
+    renderCards();
+    closeModal();
+    showToast(editingId ? '✅ 案例已更新' : '✅ 案例已保存，所有人刷新后可见');
+  } catch(e) {
+    showToast('❌ ' + e.message);
+  } finally {
+    btn.disabled = false; tip.style.display = 'none';
+  }
 }
 
-// ─────────────────────────────────────────
-// 工具
-// ─────────────────────────────────────────
-function esc(str) {
-  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+// ── 工具 ──
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-
-function linkify(str) {
-  return str.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+function linkify(s) {
+  return s.replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
 }
-
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
 }
 
-// ─────────────────────────────────────────
-// Init
-// ─────────────────────────────────────────
-renderCards();
+// ── Init ──
+loadCases();
 </script>
 </body>
 </html>
