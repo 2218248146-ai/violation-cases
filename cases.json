@@ -56,6 +56,8 @@
     "merchants": [],
     "blackbox": false,
     "freq": null,
-    "createdAt": "2026-05-26"
+    "createdAt": "2026-05-26",
+    "am": "陈心怡",
+    "updatedAt": "2026-05-27"
   }
 ]
