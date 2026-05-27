@@ -11,8 +11,9 @@
       "Ddrops"
     ],
     "blackbox": false,
-    "freq": 1,
-    "createdAt": "2026-05-27"
+    "freq": 2,
+    "createdAt": "2026-05-27",
+    "updatedAt": "2026-05-27"
   },
   {
     "id": 1,
