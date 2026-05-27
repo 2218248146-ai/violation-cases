@@ -13,8 +13,9 @@
       "NANO kids"
     ],
     "blackbox": true,
-    "freq": 1,
-    "createdAt": "2026-05-27"
+    "freq": 2,
+    "createdAt": "2026-05-27",
+    "updatedAt": "2026-05-27"
   },
   {
     "id": 1779854517454,
