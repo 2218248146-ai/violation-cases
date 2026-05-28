@@ -605,16 +605,10 @@ function renderTable() {
     <tr class="row-expand${isOpen?' open':''}" data-expand="${c.id}">
       <td class="expand-cell" colspan="6">
         <div class="expand-inner">
-          ${c.desc ? `<div class="expand-label">违规描述</div>
-          <div class="expand-text">${linkify(esc(c.desc))}</div>` : ''}
-          ${c.advice ? `<div class="expand-label">规避建议</div>
-          <div class="advice-block">${esc(c.advice)}</div>` : ''}
           <div class="expand-label">触发记录（${freq} 次）</div>
           <div class="records-wrap">${recordsTableHTML(records)}</div>
           <div style="font-size:11px;color:var(--gray-400);margin-top:10px;">
             📅 创建于 ${c.createdAt||'—'} · 最后更新 ${c.updatedAt||'—'}
-            &nbsp;·&nbsp;
-            <button class="icon-btn" style="display:inline-flex;height:20px;font-size:11px;color:var(--gray-400);padding:0 4px;" onclick="openEdit(${c.id});event.stopPropagation()">编辑案例详情</button>
           </div>
         </div>
       </td>
